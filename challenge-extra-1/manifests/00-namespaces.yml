@@ -1,0 +1,43 @@
+#
+## collector
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: collector
+
+---
+#
+## integration
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: integration
+
+---
+#
+## orcrist
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: orcrist
+
+---
+#
+## monitoring
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+
+---
+#
+## tools
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tools
