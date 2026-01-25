@@ -67,26 +67,26 @@ How can we fix it? We expected the message `Congrats! :)`.
 
 > _TIP: The binary was compiled for x86_64 Linux._
 
-## Challenge 5: Build with Ansible
+## Challenge 5: Helm Chart
 
 > _NOTE: Go to `challenge-5` directory._
 
-You find a playbook but it is incomplete.
-Can you develop the missing Ansible tasks to deploy the docker image from `challenge-4`?
+Create a Helm chart to deploy the Python HTTP server from `challenge-3` to Kubernetes.
 
-- Add the server on the inventory.
-- Install `docker`.
-- `build` the image from `Dockerfile` (challenge-4).
-- Deploy the image on the server.
-- Check if HTTP server is running and response properly.
-- Save the output of the `ansible-playbook` execution in `ansible.log` file and upload.
-- Group tasks with `tags`.
+You will find a minimal chart scaffold in `server-chart/`. Complete it with:
 
-We've got some modules to solve it:
+- Define configurable values in `values.yaml` (image, replicas, service, etc.)
+- Create a Kubernetes Deployment in `templates/deployment.yaml`
+- Create a Kubernetes Service in `templates/service.yaml`
+- Ensure all hardcoded values are parameterized
 
-- [build Docker image](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_image_module.html)
-- [deploy container](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html)
-- [check server via HTTP](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html)
+Your chart should:
+
+- Pass `helm lint ./server-chart`
+- Render valid manifests with `helm template ./server-chart`
+- Be installable with `helm install server ./server-chart`
+
+See the `challenge-5/README.md` for detailed requirements and acceptance criteria.
 
 # Extra Challenges
 
@@ -118,9 +118,10 @@ Get info.:
 - Use [Terraform](https://www.terraform.io/) to provision the Kubernetes cluster with the same resources as in `challenge-extra-1`.
 - Upload all files when you've finished the task.
 
-## Extra Challenge 3: Test Ansible
+## Extra Challenge 3: Test Helm Chart
 
 > _NOTE: Create `challenge-extra-3` directory._
 
-- Use [molecule](https://molecule.readthedocs.io/en/latest/) to test `challenge-5` with your prefered (and compatible) [provider](https://molecule.readthedocs.io/en/stable-1.9/#provider) and [driver](https://molecule.readthedocs.io/en/stable-1.9/#driver).
+- Use [helm-unittest](https://github.com/helm-unittest/helm-unittest) or [chart-testing](https://github.com/helm/chart-testing) to write tests for your `challenge-5` Helm chart.
+- Write tests that verify the Deployment and Service are rendered correctly with expected values.
 - Upload all files when you've finished the task.

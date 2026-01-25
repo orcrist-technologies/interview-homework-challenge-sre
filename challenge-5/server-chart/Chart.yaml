@@ -1,0 +1,5 @@
+apiVersion: v2
+name: server-chart
+description: A Helm chart to deploy the Challenge 3 Python server
+version: 0.1.0
+appVersion: "1.0.0"
