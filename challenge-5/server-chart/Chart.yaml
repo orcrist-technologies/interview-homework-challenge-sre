@@ -3,3 +3,6 @@ name: server-chart
 description: A Helm chart to deploy the Challenge 3 Python server
 version: 0.1.0
 appVersion: "1.0.0"
+icon: https://www.python.org/static/community_logos/python-logo.png
+maintainers:
+  - name: Adil
