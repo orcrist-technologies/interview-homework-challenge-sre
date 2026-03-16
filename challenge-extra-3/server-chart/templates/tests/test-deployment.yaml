@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "server-chart.fullname" . }}-test-deployment"
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: test
+      image: curlimages/curl
+      command:
+        - curl
+        - -f
+        - -H
+        - "Challenge: orcrist.org"
+        - "http://{{ include "server-chart.fullname" . }}:{{ .Values.service.port }}"
+  restartPolicy: Never

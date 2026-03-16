@@ -1,0 +1,5 @@
+chart-dirs:
+  - .
+charts:
+  - server-chart
+helm-extra-args: --timeout 60s
